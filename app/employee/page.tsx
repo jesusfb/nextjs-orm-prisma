@@ -1,21 +1,19 @@
 import Link from 'next/link';
-// import { getEmployeelist } from '@/lib/action';
-// import { formatDate } from '@/lib/utils';
-// import { DeleteButton } from '@/components/delete';
+import { getEmployeelist } from '@/lib/action';
+import { formatDate } from '@/lib/utils';
+import DeleteButton from '@/components/Delete';
 
 //const Employee = async () => {
 const Employee = async ({ query }: { query: string }) => {
-  //   const employees = await getEmployeelist(query);
+  const employees = await getEmployeelist(query);
+  console.log(employees);
   return (
     <div
       className="w-screen py-20 flex justify-center flex-col items-center"
       data-theme="light"
     >
       <div className="flex items-center justify-between gap-1 mb-5">
-        <h1 className="text-4xl font-bold">
-          Next.js 14 CRUD Create, Read, Update and Delete <br />
-          Prisma PostgreSQL | TailwindCSS DaisyUI
-        </h1>
+        <h1 className="text-4xl font-bold">All Employees</h1>
       </div>
       <div className="overflow-x-auto">
         <div className="mb-2 w-full text-right">
@@ -35,19 +33,28 @@ const Employee = async ({ query }: { query: string }) => {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white text-black border-b">
-              <td className="py-3 px-6">1</td>
-              <td className="py-3 px-6">John</td>
-              <td className="py-3 px-6">john@email.com</td>
-              <td className="py-3 px-6">090078601</td>
-              <td className="py-3 px-6">08/05/24 </td>
-              <td className="flex justify-center gap-1 py-3">
-                <Link href={`/employee/edit`} className="btn btn-info">
-                  Edit
-                </Link>
-                Delete
-              </td>
-            </tr>
+            {/* <div>{employees}</div> */}
+
+            {employees.map((rs, index) => (
+              <tr key={rs.id} className="bg-white text-black border-b">
+                <td className="py-3 px-6">{index + 1}</td>
+                <td className="py-3 px-6">{rs.name}</td>
+                <td className="py-3 px-6">{rs.email}</td>
+                <td className="py-3 px-6">{rs.phone}</td>
+                <td className="py-3 px-6">
+                  {formatDate(rs.createdAt.toString())}
+                </td>
+                <td className="flex justify-center gap-1 py-3">
+                  <Link
+                    href={`/employee/edit/${rs.id}`}
+                    className="btn btn-info"
+                  >
+                    Edit
+                  </Link>
+                  <DeleteButton id={rs.id} />
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

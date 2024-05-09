@@ -8,7 +8,7 @@ const CreateEmplyeePage = () => {
 
   return (
     <div className="max-w-md mx-auto mt-5">
-      <h1 className="text-center">Add New Employee</h1>
+      <h1 className="text-center text-4xl font-bold mb-10">Add New Employee</h1>
       <div>
         <form action={formAction}>
           <div className="mb-5">
@@ -22,7 +22,7 @@ const CreateEmplyeePage = () => {
               name="name"
               type="text"
               id="name"
-              className="input input-bordered input-primary w-full max-w-xs"
+              className="input input-bordered input-primary w-full"
             />
             <div id="name-error" aria-live="polite" aria-atomic="true">
               <p className="mt-2 text-sm text-red-500">{state?.Error?.name}</p>
@@ -39,7 +39,7 @@ const CreateEmplyeePage = () => {
               name="email"
               type="email"
               id="email"
-              className="input input-bordered input-primary w-full max-w-xs"
+              className="input input-bordered input-primary w-full"
             />
             <div id="email-error" aria-live="polite" aria-atomic="true">
               <p className="mt-2 text-sm text-red-500">{state?.Error?.email}</p>
@@ -56,7 +56,7 @@ const CreateEmplyeePage = () => {
               name="phone"
               type="text"
               id="phone"
-              className="input input-bordered input-primary w-full max-w-xs"
+              className="input input-bordered input-primary w-full"
             />
             <div id="phone-error" aria-live="polite" aria-atomic="true">
               <p className="mt-2 text-sm text-red-500">{state?.Error?.phone}</p>
